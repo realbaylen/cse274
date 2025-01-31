@@ -1,11 +1,11 @@
 public class Child extends Parent {
   private int age;
-  void Child(String name, int age) {
-    name = "";
-    age = 0;
+  Child(String name, int age) {
+    this.name = name;
+    this.age = age;
   }
   public void displayInfo() {
-    System.out.printf("Name: %s", name);
-    System.out.printf("Age: %s", age);
+    System.out.printf("Name: %s%n", name);
+    System.out.printf("Age: %s%n", age);
   }
 }

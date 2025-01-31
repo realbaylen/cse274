@@ -2,10 +2,12 @@
 
 public class Parent {
   protected String name;
-  Parent(String name) {
-    name = "";
+  void Parent(String name) {
+    name = this.name;
   }
   public void displayInfo() {
-    System.out.printf("Name: %s", name);
+    System.out.printf("Name: %s%n", name);
   }
 }
+
+
