@@ -1,11 +1,13 @@
 public class Child extends Parent {
   private int age;
-  Child(String name, int age) {
-    this.name = name;
+  // cc onstructor
+  public Child(String name, int age) {
+    super(name);
     this.age = age;
   }
+  // Display attributes of Child object
   public void displayInfo() {
     System.out.printf("Name: %s%n", name);
-    System.out.printf("Age: %s%n", age);
+    System.out.printf("Age: %d%n", age);
   }
 }
