@@ -46,4 +46,8 @@ public class Joke extends Content implements Convertable, Comparable<Joke> {
   public String toString() {
     return String.format("Category: %s%nJoke: %s%n", category, getContent().substring(0, Math.min(10, getContent().length())));
   }
+
+  public String getCategory() {
+    return this.category;
+  }
 }
