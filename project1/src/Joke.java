@@ -36,4 +36,14 @@ public class Joke extends Content implements Convertable, Comparable<Joke> {
     System.arraycopy(contentBytes, 0, result, 15, contentLength);
     return result;
   }
+
+  @Override
+  public Object clone() {
+    return new Joke(this.category, this.getContent());
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Category: %s%nJoke: %s%n", category, getContent().substring(0, Math.min(10, getContent().length())));
+  }
 }
