@@ -42,4 +42,12 @@ public class Content {
     }
     return indexes.toArray();
   }
+
+  public Object clone() {
+    return new content(this);
+  }
+
+  public String toString() {
+    return String.format("Content %s%n", content);
+  }
 }
