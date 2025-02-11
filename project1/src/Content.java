@@ -6,9 +6,7 @@ public class Content {
   // Content(String) constructor
   public Content(String str) {
     if (str == null) {
-      throw new NullPointerException();
-    }
-    content = new String(str);
+      throw new NullPointerException(); } content = new String(str);
     
   }
 
@@ -25,26 +23,33 @@ public class Content {
 
   // checks if key is in content string
   public boolean contains(String key) {
-    if (key == null) {
-      return false;
-    } else {
-      return getName().contains(key);
-    }
+    if (key == null) return false;
+    return content.contains(key);
   }
 
   // probably will need fixing
   public int[] indexOf(String key) {
-    ArrayList<Integer> indexes = new ArrayList<Integer>();
-    for (int i = 0; i < getContent().length; i++) {
-      if (getContent().toLowerCase().charAt(i) == key) {
-        indexes.add(i);
-      }
+    if (key == null || key.isEmpty()) {
+      return new int[0];
     }
-    return indexes.toArray();
+
+    ArrayList<Integer> indexes = new ArrayList<>();
+    int index = content.indexOf(key);
+    while (index != -1) {
+      indexes.add(index);
+      index = content.indexOf(key, index + 1);
+    }
+
+    int[] result = new int[indexes.size()];
+    for (int i = 0; i < indexes.size(); i++) {
+      result[i] = indexes.get(i);
+    }
+
+    return result;
   }
 
   public Object clone() {
-    return new content(this);
+    return new Content(this);
   }
 
   public String toString() {
