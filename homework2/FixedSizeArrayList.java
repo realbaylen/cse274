@@ -195,8 +195,7 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // using indexOf(T) method
     @Override
     public boolean contains(T elem) {
-        // TODO
-        return true;
+        return indexOf(elem) != -1;
     }
 
     // Removes the first occurrence of the given element from the list.
