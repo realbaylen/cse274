@@ -236,8 +236,14 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // Throws an IndexOutOfBoundsException if indices are invalid.
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        // TODO
-        return array;
+        if (fromIndex < 0 || toIndex > size || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException("Invalid subList indices");
+        }
+        FixedSizeArrayList<T> subList = new FixedSizeArrayList<>(toIndex - fromIndex);
+        for (int i = fromIndex; i < toIndex; i++) {
+            subList.add(array[i]);
+        }
+        return subList;
     }
 
     // Returns the index of the last occurrence of the specified element.
