@@ -262,8 +262,13 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // Overriding this method from the Object class
     @Override
     public Object clone() {
-        // TODO
-        return this;
+        try {
+            FixedSizeArrayList<T> cloned = (FixedSizeArrayList<T>) super.clone();
+            cloned.array = this.toArray();
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // Should never happen
+        }
     }
 
 }
