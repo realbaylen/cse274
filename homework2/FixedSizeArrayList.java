@@ -106,8 +106,7 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // returns the size instance variable
     @Override
     public int size() {
-        // TODO
-        return 0;
+        return size;
     }
 
     // returns true if the size is 0, and false otherwise
@@ -134,15 +133,22 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // and resets the size to 0
     @Override
     public void clear() {
-        // TODO
+        for (int i = 0; i < size; i++) {
+            array[i] = null;
+        }
+        size = 0;
     }
 
     // Returns a seperate, independant copy of the array
     @Override
     public T[] toArray() {
-        // TODO
-        return array;
+        T[] newArray = (T[]) new Comparable[size];
+        for (int i = 0; i < size; i++) {
+            newArray[i] = array[i];
+        }
+        return newArray;
     }
+
     // Adds the given coll to the array. goes through the given coll
     // and using the add(T) method add all the elements of coll to 
     // the array.
@@ -157,8 +163,20 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // 
     @Override
     public boolean addAll(Collection<? extends T> coll) {
-        // TODO
-        return false;
+        if (coll == null) {
+            throw new NullPointerException("Collection cannot be null");
+        }
+
+        T[] collArray = (T[]) coll.toArray();
+        if (size + collArray.length > array.length) {
+            throw new IllegalStateException("Not enough space to add all elements");
+        }
+
+        for (T elem : collArray) {
+            add(elem);
+        }
+
+        return true;
     }
 
     // Returns the index of the first occurrence of the specified element.
