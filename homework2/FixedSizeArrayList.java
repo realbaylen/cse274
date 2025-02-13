@@ -203,8 +203,12 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // using indexOf(T) method
     @Override
     public boolean remove(T elem) {
-        // TODO
-        return false;
+        int index = indexOf(elem);
+        if (index == -1) {
+            return false;
+        }
+        remove(index);
+        return true;
     }
 
     // Returns the first element in the list
