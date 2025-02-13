@@ -9,10 +9,10 @@ import static org.junit.Assert.assertNotSame;
 public class ContentTester {
   @Test
   public void testContentConstructor() {
-      String expectedContent = "Hello";
-      Content content = new Content(expectedContent);
-      assertEquals(expectedContent, content.getContent());
-    }
+    String expectedContent = "Hello";
+    Content content = new Content(expectedContent);
+    assertEquals(expectedContent, content.getContent());
+  }
 
   @Test
   public void testContains() {    
@@ -24,10 +24,11 @@ public class ContentTester {
   
   @Test
   public void testIndexOf() {
-      Content content = new Content("Hello Hello");
-      int[] indices = content.indexOf("lo");
-      assertArrayEquals(new int[]{3, 9}, indices);
+    Content content = new Content("Hello Hello");
+    int[] indices = content.indexOf("lo");
+    assertArrayEquals(new int[]{3, 9}, indices);
   }
+
   @Test
   public void testClone() {
     Content original = new Content("Clone");
