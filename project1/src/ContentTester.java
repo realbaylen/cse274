@@ -6,6 +6,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 
+/**
+ * Unit tests for the Content class.
+ */
 public class ContentTester {
   @Test
   public void testContentConstructor() {
@@ -15,13 +18,12 @@ public class ContentTester {
   }
 
   @Test
-  public void testContains() {    
+  public void testContains() {
     Content content = new Content("Hello World");
     assertTrue(content.contains("World"));
     assertFalse(content.contains("world"));
   }
 
-  
   @Test
   public void testIndexOf() {
     Content content = new Content("Hello Hello");
@@ -38,7 +40,7 @@ public class ContentTester {
   }
 
   @Test
-    public void testCopyConstructor() {
+  public void testCopyConstructor() {
     Content original = new Content("Copy");
     Content copy = new Content(original);
     assertEquals(original.getContent(), copy.getContent());
