@@ -285,4 +285,14 @@ public class FixedSizeArrayListTest {
         assertEquals(4, list.lastIndexOf(30));
         assertEquals(-1, list.lastIndexOf(99)); // Element not in list
     }
+
+    @Test
+    public void testAddUntilFull() {
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        assertFalse(list.add(6)); // Should not add as capacity is 5
+    }
 }
