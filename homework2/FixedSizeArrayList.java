@@ -215,8 +215,10 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // calls other get(int) method
     @Override
     public T getFirst() {
-        // TODO
-        return null;
+        if (isEmpty()) {
+            throw new NoSuchElementException("List is empty");
+        }
+        return get(0);
     }
 
     // Returns a new list containing the elements in reverse order.
