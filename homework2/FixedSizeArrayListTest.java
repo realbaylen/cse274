@@ -293,6 +293,6 @@ public class FixedSizeArrayListTest {
         list.add(3);
         list.add(4);
         list.add(5);
-        assertFalse(list.add(6)); // Should not add as capacity is 5
+        assertFalse(list.add(6));
     }
 }
