@@ -183,8 +183,12 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // Returns -1 if the element is not found.
     @Override
     public int indexOf(T elem) {
-        // TODO
-        return -100;
+        for (int i = 0; i < size; i++) {
+            if (array[i].equals(elem)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // Checks if the list contains a specific element.
