@@ -250,8 +250,12 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // Returns -1 if the element is not found.
     @Override
     public int lastIndexOf(T elem) {
-        // TODO
-        return -100;
+        for (int i = size - 1; i >= 0; i--) {
+            if (array[i].equals(elem)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // Creates and returns a deep copy of this object
