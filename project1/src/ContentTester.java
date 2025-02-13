@@ -4,10 +4,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertArrayEquals;
-
-
-import org.junit.Assert.*;
+import static org.junit.Assert.assertNotSame;
 
 public class ContentTester {
   @Test
@@ -30,5 +27,20 @@ public class ContentTester {
       Content content = new Content("Hello Hello");
       int[] indices = content.indexOf("lo");
       assertArrayEquals(new int[]{3, 9}, indices);
+  }
+  
+  @Test
+    public void testCopyConstructor() {
+    Content original = new Content("Copied content");
+    Content copy = new Content(original);
+    assertEquals(original.getContent(), copy.getContent());
+  }
+
+  @Test
+  public void testCloneMethod() {
+    Content original = new Content("Clone content");
+    Content cloned = (Content) original.clone();
+    assertEquals(original.getContent(), cloned.getContent());
+    assertNotSame(original, cloned);
   }
 }
