@@ -9,12 +9,13 @@ public class Joke extends Content implements Convertable, Comparable<Joke> {
   }
 
   @Override
-  public int compareTo(joke other) {
+  public int compareTo(Joke other) {
     if (this.getContent().length() == other.getContent().length()) {
-      return this.getContent().substring(0, 10).compareTo(other.getContent().substring(0, 10));
+      int minLength = Math.min(this.getContent().length(), other.getContent().length());
+      minLength = Math.min(minLength, 10);
+      return this.getContent().substring(0, minLength).compareTo(other.getContent().substring(0, minLength));
     }
-    return Integer.compare(this.getContent().length(),other.getContent().length());
-
+    return Integer.compare(this.getContent().length(), other.getContent().length());
   }
 
   @Override
@@ -32,8 +33,8 @@ public class Joke extends Content implements Convertable, Comparable<Joke> {
     byte[] contentBytes = this.getContent().getBytes();
     int categoryLength = Math.min(categoryBytes.length, 15);
     System.arraycopy(categoryBytes, 0, result, 0, categoryLength);
-    int contentLength = Math.min(contentBytes.length, byteSize - 15);
-    System.arraycopy(contentBytes, 0, result, 15, contentLength);
+    int contentLength = Math.min(contentBytes.length, byteSize - categoryLength);
+    System.arraycopy(contentBytes, 0, result, categoryLength, contentLength);
     return result;
   }
 
