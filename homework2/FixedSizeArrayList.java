@@ -224,8 +224,11 @@ public class FixedSizeArrayList<T extends Comparable<T>> implements List<T> {
     // Returns a new list containing the elements in reverse order.
     @Override
     public List<T> reversed() {
-        // TODO
-        return array;
+        FixedSizeArrayList<T> reversedList = new FixedSizeArrayList<>(size);
+        for (int i = size - 1; i >= 0; i--) {
+            reversedList.add(array[i]);
+        }
+        return reversedList;
     }
 
     // Returns a sublist from the given start index (inclusive) to end index (exclusive).
