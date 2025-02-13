@@ -28,19 +28,18 @@ public class ContentTester {
       int[] indices = content.indexOf("lo");
       assertArrayEquals(new int[]{3, 9}, indices);
   }
-  
   @Test
-    public void testCopyConstructor() {
-    Content original = new Content("Copied content");
-    Content copy = new Content(original);
-    assertEquals(original.getContent(), copy.getContent());
-  }
-
-  @Test
-  public void testCloneMethod() {
-    Content original = new Content("Clone content");
+  public void testClone() {
+    Content original = new Content("Clone");
     Content cloned = (Content) original.clone();
     assertEquals(original.getContent(), cloned.getContent());
     assertNotSame(original, cloned);
+  }
+
+  @Test
+    public void testCopyConstructor() {
+    Content original = new Content("Copy");
+    Content copy = new Content(original);
+    assertEquals(original.getContent(), copy.getContent());
   }
 }
