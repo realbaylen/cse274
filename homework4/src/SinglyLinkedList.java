@@ -118,7 +118,7 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
       current = current.next;
       i++;
     }
-    // throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    return -1;
   }
 
   // Returns the index of the last occurrence of the specified element in the list
@@ -129,7 +129,17 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public int lastIndexOf(T elem) { // O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    Node<T> current = head;
+    int i = 0;
+    int lastIndex = -1;
+    while (current != null) {
+      if (current.data.equals(elem)) {
+        lastIndex = i;
+      }
+      current = current.next;
+      i++;
+    }
+    return lastIndex;
   }
 
   // Checks if the specified element exists in the list
@@ -139,7 +149,7 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public boolean contains(T elem) { // O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    return indexOf(elem) != -1;
   }
 
   // Converts the linked list into an array and returns it
@@ -150,7 +160,6 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public T[] toArray() { // O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
   }
 
   // Adds all elements from the given collection to the list
