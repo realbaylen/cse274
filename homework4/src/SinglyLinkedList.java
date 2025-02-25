@@ -262,7 +262,13 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public List<T> reversed() { // O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    SinglyLinkedList<T> reversedList = new SinglyLinkedList<>();
+    Node<T> current = head;
+    while (current != null) {
+      reversedList.addFirst(current.data);
+      current = current.next;
+    }
+    return reversedList;
   }
 
   // Replaces the element at the specified index with a new value and returns the old value
@@ -273,7 +279,16 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public T set(int index, T elem) { // O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+    }
+    Node<T> current = head;
+    for (int i = 0; i < index; i++) {
+      current = current.next;
+    }
+    T oldData = current.data;
+    current.data = elem;
+    return oldData;
   }
 
   // Returns a new list containing elements from the specified range [fromIndex, toIndex)
