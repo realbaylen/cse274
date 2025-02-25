@@ -221,21 +221,37 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public T remove(int index) { // Ω(1), O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+    }
+    if (index == 0) {
+      T data = head.data;
+      head = head.next;
+      size--;
+      return data;
+    }
+    Node<T> current = head;
+    for (int i = 0; i < index - 1; i++) {
+      current = current.next;
+    }
+    T data = current.next.data;
+    current.next = current.next.next;
+    size--;
+    return data;
   }
 
   // call the remove(int index) method with the proper argument
   @Override
   public T removeFirst() { // O(1)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    return remove(0);
   }
 
   // call the remove(int index) method with the proper argument
   @Override
   public T removeLast() { // O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    return remove(size - 1);
   }
 
   // Returns a new list with the elements in reverse order
