@@ -160,6 +160,14 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public T[] toArray() { // O(n)
     // TODO Auto-generated method stub
+    T[] array = (T[]) new Comparable[size];
+    Node<T> current = head;
+    int i = 0;
+    while (current != null) {
+      array[i++] = current.data;
+      current = current.next;
+    }
+    return array;
   }
 
   // Adds all elements from the given collection to the list
@@ -169,7 +177,10 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public boolean addAll(Collection<? extends T> coll) { // O(n^2)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    for (T elem : coll) {
+      add(elem);
+    }
+    return true;
   }
 
   // Removes the first occurrence of the specified element from the list
@@ -182,7 +193,22 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   @Override
   public boolean remove(T elem) { // Ω(1), O(n)
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    if (head == null) return false;
+    if (head.data.equals(elem)) {
+      head = head.next;
+      size--;
+      return true;
+    }
+    Node<T> current = head;
+    while (current.next != null) {
+      if (current.next.data.equals(elem)) {
+        current.next = current.next.next;
+        size--;
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
   }
 
   // Removes the element at the specified index and returns its value
