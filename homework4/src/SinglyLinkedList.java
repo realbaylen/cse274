@@ -299,8 +299,19 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   // Time complexity: O(n²) due to repeated traversal during insertion
   @Override
   public List<T> subList(int fromIndex, int toIndex) { // O(n^2)
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    if (fromIndex < 0 || toIndex > size || fromIndex > toIndex) {
+      throw new IndexOutOfBoundsException("Invalid indices");
+    }
+    SinglyLinkedList<T> sublist = new SinglyLinkedList<>();
+    Node<T> current = head;
+    for (int i = 0; i < fromIndex; i++) {
+      current = current.next;
+    }
+    for (int i = fromIndex; i < toIndex; i++) {
+      sublist.addLast(current.data);
+      current = current.next;
+    }
+    return sublist;
   }
 
   // Creates and returns a new list that is a copy of the current list
@@ -309,8 +320,13 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   // Time complexity: O(n²) due to inefficient insertion operations in addAll()
   @Override
   public Object clone() { // O(n^2)
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    SinglyLinkedList<T> clonedList = new SinglyLinkedList<>();
+    Node<T> current = head;
+    while (current != null) {
+      clonedList.addLast(current.data);
+      current = current.next;
+    }
+    return clonedList;
   }
 
   // Returns a string representation of the list in the format {element1, element2, ...}
@@ -320,7 +336,16 @@ public class SinglyLinkedList<T extends Comparable<T>> implements List<T> {
   // Example: For a list containing [1, 2, 3], this method returns "{1, 2, 3}"
   @Override
   public String toString() { // O(n^2)
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'addAll'");
+    StringBuilder sb = new StringBuilder("{");
+    Node<T> current = head;
+    while (current != null) {
+      sb.append(current.data);
+      if (current.next != null) {
+        sb.append(", ");
+      }
+      current = current.next;
+    }
+    sb.append("}");
+    return sb.toString();
   }
 }
