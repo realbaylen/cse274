@@ -257,4 +257,25 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
     current.data = elem;
     return oldData;
   }
+
+  @Override
+  public List<T> subList(int fromIndex, int toIndex) {
+    if (fromIndex < 0 || toIndex > size || fromIndex > toIndex) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    DoublyLinkedList<T> sublist = new DoublyLinkedList<>();
+    Node2<T> current = head;
+
+    for (int i = 0; i < fromIndex; i++) {
+      current = current.next;
+    }
+
+    for (int i = fromIndex; i < toIndex; i++) {
+      sublist.addLast(current.data);
+      current = current.next;
+    }
+
+    return sublist;
+  }
 }
