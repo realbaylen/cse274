@@ -237,4 +237,24 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
     }
     return reversedList;
   }
+
+  @Override
+  public T set(int index, T elem) {
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    // determine whether to start from head or tail
+    Node2<T> current = (index < size / 2) ? head : tail;
+    int step = (index < size / 2) ? 1 : -1;
+
+    // go to index
+    for (int i = (index < size / 2) ? 0 : size - 1; i != index; i += step) {
+      current = (step == 1) ? current.next : current.prev;
+    }
+
+    T oldData = current.data;
+    current.data = elem;
+    return oldData;
+  }
 }
