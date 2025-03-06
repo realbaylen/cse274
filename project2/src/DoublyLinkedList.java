@@ -278,4 +278,32 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
 
     return sublist;
   }
+
+  @Override
+  public Object clone() {
+    DoublyLinkedList<T> cloneList = new DoublyLinkedList<>();
+
+    // add each entry to the new list
+    for (Node2<T> current = head; current != null; current = current.next) {
+      cloneList.addLast(current.data);
+    }
+    return cloneList;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder("{");
+    Node2<T> current = head;
+
+    // add each node data to the string
+    while (current != null) {
+      sb.append(current.data);
+      current = current.next;
+      if (current != null) {
+        sb.append(", ");
+      }
+    }
+    sb.append("}");
+    return sb.toString();
+  }
 }
