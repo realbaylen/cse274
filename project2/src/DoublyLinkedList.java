@@ -218,4 +218,14 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
 
     return false;
   }
+
+  @Override
+  public T removeFirst() { // O(1)
+    return remove(0);
+  }
+
+  @Override
+  public T removeLast() { // O(1)
+    return remove(size - 1);
+  }
 }
