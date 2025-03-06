@@ -220,12 +220,21 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
   }
 
   @Override
-  public T removeFirst() { // O(1)
+  public T removeFirst() {
     return remove(0);
   }
 
   @Override
-  public T removeLast() { // O(1)
+  public T removeLast() {
     return remove(size - 1);
+  }
+
+  @Override
+  public List<T> reversed() {
+    DoublyLinkedList<T> reversedList = new DoublyLinkedList<>();
+    for (Node2<T> current = tail; current != null; current = current.prev) {
+      reversedList.add(current.data);
+    }
+    return reversedList;
   }
 }
