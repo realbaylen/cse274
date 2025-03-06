@@ -68,4 +68,25 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
   public void addLast(T elem) {
     add(size, elem);
   }
+
+  @Override
+  public T get(int index) {
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException();
+    }
+
+    Node2<T> current;
+    if (index < size / 2) {
+      current = head;
+      for (int i = 0; i < index; i++) {
+        current = current.next;
+      }
+    } else {
+      current = tail;
+      for (int i = size - 1; i > index; i--) {
+        current = current.prev;
+      }
+    }
+    return current.data;
+  }
 }
