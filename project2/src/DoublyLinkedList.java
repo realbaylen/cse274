@@ -164,4 +164,58 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
     }
     return true;
   }
+
+  @Override
+  public T remove(int index) {
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+    }
+
+    // find node at index
+    Node2<T> current = (index < size / 2) ? head : tail;
+    int step = (index < size / 2) ? 1 : -1;
+    for (int i = (index < size / 2) ? 0 : size - 1; i != index; i += step) {
+      current = (step == 1) ? current.next : current.prev;
+    }
+
+    if (current.prev != null) {
+      current.prev.next = current.next;
+    } else {
+      head = current.next;
+    }
+
+    if (current.next != null) {
+      current.next.prev = current.prev;
+    } else {
+      tail = current.prev;
+    }
+
+    size--;
+    return current.data;
+  }
+
+  @Override
+  public boolean remove(T elem) {
+    Node2<T> current = head;
+    while (current != null) {
+      if (current.data.equals(elem)) {
+        if (current.prev == null) {
+          head = current.next;
+        } else {
+          current.prev.next = current.next;
+        }
+        if (current.next == null) {
+          tail = current.prev;
+        } else {
+          current.next.prev = current.prev;
+        }
+
+        size--;
+        return true;
+      }
+      current = current.next;
+    }
+
+    return false;
+  }
 }
