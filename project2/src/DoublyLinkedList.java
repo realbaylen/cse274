@@ -89,4 +89,25 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
     }
     return current.data;
   }
+
+  @Override
+  public int size() {
+    return size;
+  }
+
+  @Override
+  public void clear() {
+    head = tail = null;
+    size = 0;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return size == 0;
+  }
+
+  @Override
+  public T getFirst() {
+    return get(0);
+  }
 }
