@@ -137,4 +137,31 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
 
     return -1; // wasn't found
   }
+
+  @Override
+  public boolean contains(T elem) {
+    return indexOf(elem) != -1;
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public T[] toArray() {
+    T[] newArray = (T[]) new Comparable[size];
+
+    Node2<T> current = head;
+    for (int i = 0; i < size; i++) {
+      newArray[i] = current.data;
+      current = current.next;
+    }
+
+    return newArray;
+  }
+
+  public boolean addAll(Collection<? extends T> coll) {
+    T[] array = coll.toArray();
+    for (int i = 0; i < array.length; i++) {
+      addLast(array[i]);
+    }
+    return true;
+  }
 }
