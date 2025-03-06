@@ -110,4 +110,31 @@ public class DoublyLinkedList<T extends Comparable<T>> implements List<T> {
   public T getFirst() {
     return get(0);
   }
+
+  @Override
+  public int indexOf(T elem) {
+    Node2<T> current = head;
+
+    for (int i = 0; i < size; i++) { // start from the head
+      if (current.data.equals(elem)) {
+        return i;
+      }
+      current = current.next;
+    }
+
+    return -1; // wasn't found
+  }
+
+  @Override
+  public int lastIndexOf(T elem) {
+    Node2<T> current = tail;
+    for (int i = size - 1; i >= 0; i--) { // start from the tail
+      if (current.data.equals(elem)) {
+        return i;
+      }
+      current = current.prev;
+    }
+
+    return -1; // wasn't found
+  }
 }
