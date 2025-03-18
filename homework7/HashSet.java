@@ -9,6 +9,11 @@ public class HashSet<T extends Comparable<T>> implements Set<T> {
     map = new HashMap<>();
   }
 
+  @Override
+  public int hashCode() {
+    return map.keySet().hashCode();
+  }
+
   public HashSet(int capacity) {
     map = new HashMap<>(capacity);
   }
@@ -56,13 +61,26 @@ public class HashSet<T extends Comparable<T>> implements Set<T> {
     return map.isEmpty();
   }
 
-  public boolean addAll(Collection<? extends T> c) {
-    boolean modified = false;
-    for (T value : c) {
-      if (add(value)) {
-        modified = true;
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("{");
+    Iterator<T> it = map.keySet().iterator();
+    while (it.hasNext()) {
+      sb.append(it.next());
+      if (it.hasNext()) {
+        sb.append(", ");
       }
     }
-    return modified;
+    sb.append("}");
+    return sb.toString();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    HashSet<?> hashSet = (HashSet<?>) o;
+    return map.keySet().equals(hashSet.map.keySet());
   }
 }
