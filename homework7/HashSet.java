@@ -27,8 +27,8 @@ public class HashSet<T extends Comparable<T>> implements Set<T> {
   @Override
   public boolean addAll(Collection<? extends T> c) {
     boolean modified = false;
-    for (T value : c) {
-      if (add(value)) {
+    for (T elem : c) {
+      if (add(elem)) {
         modified = true;
       }
     }
