@@ -53,17 +53,16 @@ public class HashSet<T extends Comparable<T>> implements Set<T> {
 
   @Override
   public boolean isEmpty() {
-      return map.isEmpty();
+    return map.isEmpty();
   }
-
 
   public boolean addAll(Collection<? extends T> c) {
     boolean modified = false;
     for (T value : c) {
-        if (add(value)) {
-            modified = true;
-        }
+      if (add(value)) {
+        modified = true;
+      }
     }
     return modified;
-}
+  }
 }
