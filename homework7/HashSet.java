@@ -1,3 +1,7 @@
+import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class HashSet<T extends Comparable<T>> implements Set<T> {
     private HashMap<T, Object> map;
     private static final Object DUMMY = new Object();
@@ -6,9 +10,17 @@ public class HashSet<T extends Comparable<T>> implements Set<T> {
         map = new HashMap<>();
     }
 
+    public HashSet(int capacity) {
+        map = new HashMap<>(capacity);
+    }
+
     @Override
-    public void add(T value) {
+    public boolean add(T value) {
+        if (map.containsKey(value)) {
+            return false;
+        }
         map.put(value, DUMMY);
+        return true;
     }
 
     @Override
