@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class that implements the Starbucks abstract class. Provides a simple structure to store
@@ -17,6 +18,7 @@ public class StudentStarbucks extends Starbucks {
    *
    * @param allLocations An array of Locations objects representing all Starbucks locations.
    */
+  private List<Locations> locations;
   @Override
   public void build(Locations[] allLocations) {
     locations = new ArrayList<>();
@@ -39,7 +41,22 @@ public class StudentStarbucks extends Starbucks {
    */
   @Override
   public Locations getNearest(double lng, double lat) {
-    // TODO
-    return null;
+    Locations best = null;
+    double bestDist = Double.MAX_VALUE;
+
+    for (Locations loc : locations) {
+      double dx = loc.lng - lng, dy = loc.lat - lat;
+      double distSq = dx * dx + dy * dy;
+
+      if (distSq < bestDist * bestDist + 1e-9) {
+        double dist = Math.sqrt(distSq);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = loc;
+        }
+      }
+    }
+
+    return best == null ? null : new Locations(best);
   }
 }
